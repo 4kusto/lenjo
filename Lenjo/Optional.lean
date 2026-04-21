@@ -33,7 +33,7 @@ def comp (outer : Optional S A) (inner : Optional A B) : Optional S B :=
   { get? := fun s => outer.get? s >>= inner.get?
     set  := fun b s =>
       match outer.get? s with
-      | some _ => outer.set (inner.set b (outer.get? s).get!) s
+      | some a => outer.set (inner.set b a) s
       | none   => s }
 
 /-- Lift a `Lens` into an `Optional` (always succeeds). -/
