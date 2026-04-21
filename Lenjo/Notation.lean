@@ -11,7 +11,7 @@ namespace Lenjo
 infixl:60 " ⊚ " => Lens.comp
 
 -- View: `s ^. l` extracts the focused value from `s`
-infixl:80 " ^. " => fun s (l : Lens _ _) => l.get s
+infixl:80 " ^. " => fun s l => Lens.get l s
 
 -- Set (curried): `(l .= v) s` sets the focused field to `v` in `s`
 notation:70 l " .= " v => fun s => Lens.set l v s
@@ -20,7 +20,7 @@ notation:70 l " .= " v => fun s => Lens.set l v s
 notation:70 l " %~ " f => fun s => Lens.over l f s
 
 -- Optional view: `s ^? o` returns `Option` of the focused value
-infixl:80 " ^? " => fun s (o : Optional _ _) => o.get? s
+infixl:80 " ^? " => fun s o => Optional.get? o s
 
 -- Optional set (curried): `(o .?= v) s`
 notation:70 o " .?= " v => fun s => Optional.set o v s
